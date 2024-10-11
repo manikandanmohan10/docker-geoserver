@@ -62,7 +62,7 @@ Create an Nginx configuration file under:
 cd /etc/nginx/conf.d
 ```
 
-Refer to the detailed [configuration](https://github.com/manikandanmohan10/docker-geoserver/blob/develop/strategy_docs/production/setup.md) in the setup guide.
+Refer to the detailed [configuration](https://github.com/manikandanmohan10/docker-geoserver/blob/dev/strategy_docs/production/test.conf) in the setup guide.
 
 ### 6. Commands
 Run Docker Compose
