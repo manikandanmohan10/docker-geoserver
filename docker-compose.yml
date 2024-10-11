@@ -33,6 +33,7 @@ services:
        - ${GEOSERVER_PORT}:8080
      restart: on-failure
      environment:
+       - CSRF_WHITELIST=${CSRF_WHITELIST}
        - PROXY_BASE_URL=${HTTPS_PROXY_BASE_URL}
        - GEOSERVER_DATA_DIR=${GEOSERVER_DATA_DIR}
        - GEOWEBCACHE_CACHE_DIR=${GEOWEBCACHE_CACHE_DIR}
@@ -45,11 +46,9 @@ services:
        - GEOSERVER_CONTEXT_ROOT=${GEOSERVER_CONTEXT_ROOT}
        - ROOT_WEBAPP_REDIRECT=true
        - CONSOLE_HANDLER_LEVEL=${CONSOLE_HANDLER_LEVEL}
-       # - HTTPS_PORT=${HTTPS_PORT}
-       # - HTTPS_PROXY_NAME=${HTTPS_PROXY_NAME}
-       # - HTTPS_PROXY_PORT=${HTTPS_PROXY_PORT}
-       #- HTTP_CONNECTION_TIMEOUT=${HTTP_CONNECTION_TIMEOUT}
        - CHARACTER_ENCODING=${CHARACTER_ENCODING}
+       - SSL=TRUE
+       - FORCE_SSL=TRUE
      depends_on:
        db:
          condition: service_healthy
