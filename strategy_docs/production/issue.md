@@ -23,7 +23,7 @@ Add the PROXY_BASE_URL for HTTPS access:
 </context-param>
 ```
 
-Refer to the detailed [configuration](https://github.com/manikandanmohan10/docker-geoserver/blob/develop/strategy_docs/production/setup.md) in the setup guide.
+Refer to the detailed [configuration](https://github.com/manikandanmohan10/docker-geoserver/blob/dev/strategy_docs/production/test.conf) in the setup guide.
 
 Reason:
 This configuration ensures that GeoServer recognizes it is running behind a proxy and avoids redirecting back to HTTP.
