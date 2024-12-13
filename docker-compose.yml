@@ -29,6 +29,7 @@ services:
      image: kartoza/geoserver:${GS_VERSION}
      volumes:
        - geoserver-data:/opt/geoserver/data_dir
+       - ./geoserver_upload_datas:/geoserver
      ports:
        - ${GEOSERVER_PORT}:8080
      restart: on-failure
