@@ -25,12 +25,38 @@ git checkout dev
 ```
 
 
-### Step 2. change docker-compose.yml
+### Step 2: change docker-compose.yml
 
 Change `docker-compose.yml` file according to the below file, It is required for production setup. If you are in `dev` branch this correction not required leave it.
 
 [click here](https://github.com/manikandanmohan10/docker-geoserver/blob/develop/docker-compose.yml)
 
+
+### Step 3: Change the .env file:
+
+
+```
+GEOSERVER_ADMIN_USER=admin
+GEOSERVER_ADMIN_PASSWORD=strategy@123
+
+SSL=true
+#HTTP_PORT=8080
+#HTTP_PROXY_NAME=geoserver.portail-repae.com
+#HTTP_PROXY_PORT=8000
+#HTTP_REDIRECT_PORT=
+CSRF_WHITELIST=geoserver.portail-repae.com
+HTTP_CONNECTION_TIMEOUT=20000
+HTTPS_PORT=8443
+HTTPS_MAX_THREADS=150
+HTTPS_CLIENT_AUTH=
+HTTPS_PROXY_NAME=https://geoserver.portail-repae.com
+HTTPS_PROXY_BASE_URL=https://geoserver.portail-repae.com/geoserver
+HTTPS_PROXY_PORT=443
+GEOSERVER_PORT=8000
+POSTGRES_USER=postgres
+POSTGRES_PASS=strategy@123
+
+```
 
 ### Step 3. Run  the docker cmd
 
@@ -39,7 +65,7 @@ docker-compose up -d
 ```
 
 
-### setp 3. Nginx Configuration
+### setup 4: Nginx Configuration
 
 **Set Up NGINX:**
 
