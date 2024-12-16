@@ -167,7 +167,7 @@ sudo systemctl restart nginx
 sudo nginx -t && sudo systemctl reload nginx
 ```
 
-#### docker compose down.
+#### Docker compose down.
 
 ```
 docker compose down
