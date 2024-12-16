@@ -13,7 +13,7 @@ It also addresses common issues encountered with login redirects over HTTPS and 
 ## Step-by-Step Setup
 
 
-### Step 1:
+### Step 1: Clone the repo
 clone your geoserver docker, please fork the `https://github.com/kartoza/docker-geoserver`
 and then clone your forked repo
 Ex:
@@ -21,7 +21,6 @@ Ex:
 ```
 git clone https://github.com/manikandanmohan10/docker-geoserver.git
 git checkout dev
-
 ```
 
 
@@ -64,13 +63,13 @@ POSTGRES_PASS=strategy@123
 docker compose up -d
 ```
 
-### Test the project is running:
+### Setup 4: Test the project is running:
 
 ```
 curl http://localhost:8000/geoserver/
 ```
 
-### setup 4: Nginx Configuration
+### Setup 5:Nginx Configuration
 
 **Set Up NGINX:**
 
@@ -151,18 +150,18 @@ sudo systemctl start nginx
 sudo systemctl enable nginx
 ```
 
-**see status**
+**See status**
 
 ```
 sudo systemctl status nginx
 ```
 
-**restart**
+**Restart**
 ```
 sudo systemctl restart nginx
 ```
 
-Reload nginx
+**Reload nginx**
 
 ```
 sudo nginx -t && sudo systemctl reload nginx
