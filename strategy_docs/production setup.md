@@ -61,9 +61,14 @@ POSTGRES_PASS=strategy@123
 ### Step 3. Run  the docker cmd
 
 ```
-docker-compose up -d
+docker compose up -d
 ```
 
+### Test the project is running:
+
+```
+curl http://localhost:8000/geoserver/
+```
 
 ### setup 4: Nginx Configuration
 
@@ -74,7 +79,7 @@ Place the nginx.conf in the** /etc/nginx/conf.d/** directory or as specified in 
 Restart NGINX to apply changes: `sudo systemctl restart nginx`.
 
 ```
-sudo nano /etc/nginx/conf.d/geoserver.conf
+sudo nano  /etc/nginx/conf.d/geoserver.conf
 ```
 
 
@@ -82,31 +87,30 @@ sudo nano /etc/nginx/conf.d/geoserver.conf
 
 server {
     listen 443 ssl;
-    server_name geoserver.portail-repae.com; 
-
-    ssl_certificate /etc/letsencrypt/live/geoserver.portail-repae.com/fullchain.pem; 
-    ssl_certificate_key /etc/letsencrypt/live/geoserver.portail-repae.com/privkey.pem; 
+    server_name geoserver.portail-repae.com;
+    ssl_certificate /etc/letsencrypt/live/geoserver.portail-repae.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/geoserver.portail-repae.com/privkey.pem
     include /etc/letsencrypt/options-ssl-nginx.conf;
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; 
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 
     location / {
-        proxy_pass http://127.0.0.1:8000;  # Adjust the backend service address
+        proxy_pass http://127.0.0.1:8000;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;  # Important for HTTPS
+        proxy_set_header X-Forwarded-Proto $scheme;
         client_max_body_size 250M;
     }
 
     location /geoserver {
         proxy_redirect http://127.0.0.1:8000/geoserver https://$host/geoserver;
 
-        proxy_pass http://127.0.0.1:8000/geoserver;  # Adjust the backend service address
+        proxy_pass http://127.0.0.1:8000/geoserver;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme; 
-        proxy_set_header X-Script-Name /geoserver;  
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Script-Name /geoserver;
         client_max_body_size 250M;
 }
 
@@ -117,12 +121,21 @@ server {
 
     access_log /var/log/nginx/access.log;
     error_log /var/log/nginx/error.log;
+
+
 }
 
 server {
+    if ($host = geoserver.portail-repae.com) {
+        return 301 https://$host$request_uri;
+    }
+
+
     listen 80;
     server_name geoserver.portail-repae.com;
-    return 301 https://$host$request_uri; 
+    return 301 https://$host$request_uri;
+
+
 }
 ```
 
@@ -178,4 +191,11 @@ Faced issue on redirect https to https while login
 [docker container](https://hub.docker.com/r/kartoza/geoserver)
 [csrf](https://docs.geoserver.org/stable/en/user/security/webadmin/csrf.html)
 [proxy](https://stackoverflow.com/questions/68783126/issue-with-geoserver-login-with-ssl)
+
+
+#### docker compose down.
+
+```
+docker compose down
+```
 
