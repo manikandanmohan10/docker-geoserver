@@ -89,7 +89,7 @@ server {
     listen 443 ssl;
     server_name geoserver.portail-repae.com;
     ssl_certificate /etc/letsencrypt/live/geoserver.portail-repae.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/geoserver.portail-repae.com/privkey.pem
+    ssl_certificate_key /etc/letsencrypt/live/geoserver.portail-repae.com/privkey.pem;
     include /etc/letsencrypt/options-ssl-nginx.conf;
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 
