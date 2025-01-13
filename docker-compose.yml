@@ -8,6 +8,7 @@ services:
      image: kartoza/postgis:${POSTGIS_VERSION_TAG}
      volumes:
        - geo-db-data:/var/lib/postgresql
+       - ./geoserver-backup/db:/backup
      ports:
        - ${POSTGRES_PORT}:5432
      environment:
@@ -29,7 +30,7 @@ services:
      image: kartoza/geoserver:${GS_VERSION}
      volumes:
        - geoserver-data:/opt/geoserver/data_dir
-       - ./geoserver_upload_datas:/geoserver
+       - ./geoserver-backup/geoserver_upload_datas:/geoserver
      ports:
        - ${GEOSERVER_PORT}:8080
      restart: on-failure
